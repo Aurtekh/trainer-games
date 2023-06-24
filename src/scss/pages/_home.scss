@@ -1,0 +1,33 @@
+@import '../variables';
+
+.home {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 50px;
+  &__header {
+    text-align: center;
+    margin-bottom: 100px;
+
+    color: #000000;
+    text-shadow: 2px 2px 0 $border, 2px -2px 0 $border, -2px 2px 0 $border, -2px -2px 0 $border,
+      2px 0px 0 $border, 0px 2px 0 $border, -2px 0px 0 $border, 0px -2px 0 $border;
+  }
+  &__menuWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 0 auto;
+  }
+
+  &__shadow {
+    position: fixed;
+    cursor: pointer;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
