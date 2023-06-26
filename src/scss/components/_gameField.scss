@@ -9,6 +9,23 @@
   flex-direction: column;
   align-items: center;
   color: #fff;
+  transition: all 0.2s linear;
+  overflow: hidden;
+  &--orange {
+    background: $orange;
+  }
+  &--pink {
+    background: $pink;
+  }
+  &--green {
+    background: $green;
+  }
+  &--purple {
+    background: $purple;
+  }
+  &--blue {
+    background: $blue;
+  }
 
   svg {
     position: absolute;
@@ -78,6 +95,16 @@
     font-size: 40px;
     user-select: none;
 
+    span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      line-height: 80px;
+      font-weight: 600;
+      font-size: 40px;
+      color: #fff;
+    }
+
     &:hover {
       box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
     }
@@ -123,5 +150,194 @@
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.3);
     }
+  }
+
+  &__gameMenu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    height: 32px;
+    width: 445px;
+    padding: 0 16px;
+    background-color: hsla(0, 0%, 100%, 0.4);
+    color: #333;
+    -webkit-animation: gameMenuEnter 0.5s;
+    animation: gameMenuEnter 0.5s;
+    z-index: 1;
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__item-text {
+      font-size: 7px;
+      font-weight: 600;
+    }
+    &__item-time {
+      font-weight: 900;
+      font-size: 12px;
+    }
+  }
+}
+
+.mediumField {
+  display: grid;
+  margin: 0 auto;
+  width: 485px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-items: center;
+}
+
+.bigField {
+  display: grid;
+  margin: 0 auto;
+  width: 485px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-items: center;
+}
+
+.veryBigField {
+  display: grid;
+  margin: 0 auto;
+  width: 485px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-items: center;
+}
+
+.itemMediumField {
+  line-height: 60px;
+  font-size: 30px;
+  span {
+    line-height: 60px;
+    font-size: 30px;
+  }
+}
+
+.itemBigField {
+  line-height: 50px;
+  font-size: 24px;
+  span {
+    line-height: 50px;
+    font-size: 24px;
+  }
+}
+.itemVeryBigField {
+  line-height: 40px;
+  font-size: 18px;
+  span {
+    line-height: 40px;
+    font-size: 18px;
+  }
+}
+
+.rotate {
+  animation: rotate 0.6s linear infinite;
+  animation-delay: 0s;
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.scale {
+  animation: scale 0.4s ease-in infinite alternate;
+  animation-delay: 0s;
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.blink {
+  animation: blink 0.4s ease-in infinite alternate;
+  animation-delay: 0s;
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.leave {
+  animation: leave 0.3s ease-in;
+}
+.come {
+  animation: come 0.3s ease-in;
+}
+
+@keyframes rotate {
+  25% {
+    -webkit-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+  }
+  50% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  75% {
+    -webkit-transform: rotate(15deg);
+    transform: rotate(15deg);
+  }
+  100% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+}
+
+@keyframes blink {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes scale {
+  100% {
+    -webkit-transform: scale(0.4);
+    transform: scale(0.4);
+  }
+}
+
+@keyframes gameMenuEnter {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-150%);
+    transform: translateY(-150%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes leave {
+  0% {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+  80% {
+    -webkit-transform: translateX(-700%);
+    transform: translateX(-700%);
+  }
+}
+@keyframes come {
+  0% {
+    -webkit-transform: translateX(+700%);
+    transform: translateX(+700%);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
   }
 }

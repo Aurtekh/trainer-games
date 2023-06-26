@@ -6,7 +6,8 @@ export const FindNumber = () => {
   const [showToolTipInfo, setShowToolTipInfo] = React.useState(false);
   const [showToolTipSound, setShowToolTipSound] = React.useState(false);
   const [infoPopup, setInfoPopup] = React.useState(false);
-  const [volume, setVolume] = React.useState(true);
+  const [volume, setVolume] = React.useState(false);
+
   const onMouseEnterHandlerInfo = () => {
     setShowToolTipInfo(true);
   };
