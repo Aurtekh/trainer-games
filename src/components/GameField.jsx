@@ -60,7 +60,7 @@ export const GameField = ({ volume, infoPopup }) => {
   React.useEffect(() => {
     if (!infoPopup) {
       if (timer > 0 && isGamePlay) {
-        setTimeout(setTimer, 100, timer - 1);
+        setTimeout(setTimer, 1000, timer - 1);
       } else {
         setIsGamePlay(false);
       }

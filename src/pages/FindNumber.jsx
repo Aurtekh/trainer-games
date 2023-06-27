@@ -5,7 +5,6 @@ import { gameOverContext } from '../App';
 
 export const FindNumber = () => {
   const { isGameOver, setIsGameOver } = React.useContext(gameOverContext);
-  console.log(isGameOver);
   const [showToolTipInfo, setShowToolTipInfo] = React.useState(false);
   const [showToolTipSound, setShowToolTipSound] = React.useState(false);
   const [infoPopup, setInfoPopup] = React.useState(false);

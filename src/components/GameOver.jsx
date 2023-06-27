@@ -2,7 +2,7 @@ import React from 'react';
 import { gameOverContext } from '../App';
 
 export const GameOver = ({ score, correctAnswer, incorrectAnswer }) => {
-  const { isGameOver, setIsGameOver } = React.useContext(gameOverContext);
+  const { setIsGameOver } = React.useContext(gameOverContext);
   const time = new Date()
     .toLocaleString('en-US', {
       timeZone: 'Europe/Moscow',
@@ -34,6 +34,7 @@ export const GameOver = ({ score, correctAnswer, incorrectAnswer }) => {
     } else {
       localStorage.setItem('statistics', JSON.stringify([results]));
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
