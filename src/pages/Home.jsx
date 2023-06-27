@@ -1,6 +1,7 @@
 import React from 'react';
 import { AboutGame } from '../components/AboutGame';
 import { Link } from 'react-router-dom';
+import { YourStatistics } from '../components/YourStatistics';
 
 export const Home = () => {
   const [popup, setPopup] = React.useState('0');
@@ -14,12 +15,18 @@ export const Home = () => {
             Играть
           </Link>
         </button>
+        <button className="button" onClick={() => setPopup('2')}>
+          Результаты
+        </button>
         <button className="button" onClick={() => setPopup('1')}>
           Об игре
         </button>
       </div>
       <AboutGame active={popup === '1' ? '1' : '0'} />
-      {popup === '1' && <div className="home__shadow" onClick={() => setPopup('0')}></div>}
+      <YourStatistics active={popup === '2' ? '2' : '0'} />
+      {(popup === '1' || popup === '2') && (
+        <div className="home__shadow" onClick={() => setPopup('0')}></div>
+      )}
     </div>
   );
 };

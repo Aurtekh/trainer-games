@@ -189,6 +189,40 @@
   }
 }
 
+.cross {
+  position: absolute;
+  z-index: 1;
+  visibility: hidden;
+  top: 48%;
+  left: 43%;
+  width: 90px;
+  transition: all 0.5 ease;
+}
+.mark {
+  position: absolute;
+  visibility: hidden;
+  z-index: 1;
+  top: 48%;
+  left: 43%;
+  width: 90px;
+  height: 90px;
+}
+.cross-active {
+  visibility: visible;
+  animation: rotate 0.4s ease-in infinite alternate;
+}
+.mark-active {
+  visibility: visible;
+  animation: scaleMark 0.4s ease-in infinite alternate;
+}
+
+@keyframes scaleMark {
+  100% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+  }
+}
+
 .mediumField {
   display: grid;
   margin: 0 auto;

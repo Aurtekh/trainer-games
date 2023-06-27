@@ -1,8 +1,8 @@
 import React from 'react';
+import { gameOverContext } from '../App';
 
 export const GameOver = ({ score, correctAnswer, incorrectAnswer }) => {
-  const [items, setItems] = React.useState([]);
-
+  const { isGameOver, setIsGameOver } = React.useContext(gameOverContext);
   const time = new Date()
     .toLocaleString('en-US', {
       timeZone: 'Europe/Moscow',
@@ -10,20 +10,31 @@ export const GameOver = ({ score, correctAnswer, incorrectAnswer }) => {
     })
     .replace('24:', '00:');
 
-  // React.useEffect(() => {
-  //   const items = JSON.parse(localStorage.getItem('statistics'));
-  //   if (localStorage.getItem('statistics')) {
-  //     if (items && items.length) {
-  //       setItems([items, { score: score, data: time }]);
-  //     }
-  //   } else {
-  //     setItems({ score: score, data: time });
-  //   }
-  // }, []);
+  const results = { score: score, date: time };
 
-  // React.useEffect(() => {
-  //   localStorage.setItem('statistics', JSON.stringify(items.push({ score: score, data: time })));
-  // }, [items]);
+  React.useEffect(() => {
+    setIsGameOver(true);
+    const itemsSaved = JSON.parse(localStorage.getItem('statistics'));
+    if (localStorage.getItem('statistics')) {
+      let resultArr = itemsSaved.reduce(
+        (acc, item) => {
+          if (acc.map[item.date]) return acc;
+
+          acc.map[item.date] = true;
+          acc.resultArr.push(item);
+          return acc;
+        },
+        {
+          map: {},
+          resultArr: [],
+        },
+      ).resultArr;
+      resultArr.push(results);
+      localStorage.setItem('statistics', JSON.stringify(resultArr));
+    } else {
+      localStorage.setItem('statistics', JSON.stringify([results]));
+    }
+  }, []);
 
   return (
     <div className="gameOver">

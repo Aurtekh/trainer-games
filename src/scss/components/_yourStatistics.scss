@@ -1,0 +1,42 @@
+@import '../variables';
+
+.yourStatistics {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30px 45px 32px;
+  gap: 10px;
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+  }
+
+  &__text {
+    color: #999;
+    text-align: center;
+  }
+
+  &__textScore {
+    color: #3f3f3f;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__info {
+    width: 139px;
+    text-align: center;
+  }
+
+  &__noStatistics {
+    font-size: 18px;
+    color: #3f3f3f;
+    height: 124px;
+    text-align: center;
+    margin-top: 100px;
+  }
+}

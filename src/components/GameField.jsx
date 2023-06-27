@@ -3,6 +3,8 @@ import { GameOver } from './GameOver';
 import useSound from 'use-sound';
 import soundClick from '../assets/sound/click.mp3';
 import soundStart from '../assets/sound/startGame.mp3';
+import cross from '../assets/img/cross.svg';
+import mark from '../assets/img/mark.svg';
 
 export const GameField = ({ volume, infoPopup }) => {
   const [start, setStart] = React.useState(false);
@@ -15,7 +17,7 @@ export const GameField = ({ volume, infoPopup }) => {
   //game variables
   const [trueNumber, setTrueNumber] = React.useState(0);
   const [lvlGame, setLvlGame] = React.useState(1);
-  const [score, setScore] = React.useState(null);
+  const [score, setScore] = React.useState(0);
   const [bonus, setBonus] = React.useState(1);
   const [timer, setTimer] = React.useState(60);
   const [correctAnswer, setCorrectAnswer] = React.useState(0);
@@ -30,6 +32,8 @@ export const GameField = ({ volume, infoPopup }) => {
   const [colorItem, setColorItem] = React.useState([]);
   const [colorGameFild, setColorGameFild] = React.useState('');
   const [animationItem, setAnimationItem] = React.useState([]);
+  const [markActive, setMarkActive] = React.useState('');
+  const [crossActive, setCrossActive] = React.useState('');
   const colors = ['--orange', '--pink', '--green', '--purple', '--blue'];
   const animation = ['rotate', 'scale', 'blink'];
   const [moveItem, setMoveItem] = React.useState('come');
@@ -184,13 +188,20 @@ export const GameField = ({ volume, infoPopup }) => {
     if (volume) {
       play();
     }
+    if (trueNumber === +event.target.innerHTML) {
+      setMarkActive('-active');
+    } else {
+      setCrossActive('-active');
+    }
+    setTimeout(setCrossActive, 400, '');
+    setTimeout(setMarkActive, 400, '');
 
     setMoveItem('leave');
     setTimeout(() => {
       if (trueNumber === +event.target.innerHTML) {
         lvlGame < 9 ? setLvlGame(lvlGame + 1) : setLvlGame(lvlGame);
         bonus < 5 ? setBonus(bonus + 1) : setBonus(bonus);
-        setScore(1 * lvlGame * bonus + score);
+        setScore(3 * lvlGame * bonus + score);
         settingGame(lvlGame < 9 ? 1 : 0);
         setCorrectAnswer(correctAnswer + 1);
       } else {
@@ -212,6 +223,7 @@ export const GameField = ({ volume, infoPopup }) => {
       <GameOver score={score} correctAnswer={correctAnswer} incorrectAnswer={incorrectAnswer} />
     );
   }
+
   return (
     <div
       className={`GameField  GameField${colorGameFild}`}
@@ -248,11 +260,14 @@ export const GameField = ({ volume, infoPopup }) => {
       )}
       {!timerActiveLoading && start && (
         <div className={`GameField__wrapperGrid ${sizeField}`}>
+          <img src={cross} alt="cross" className={`cross cross${crossActive}`} />
+          <img src={mark} alt="mark" className={`mark mark${markActive}`} />
+
           <div className="GameField__gameMenu">
             <div className="GameField__gameMenu__wrapper">
               <div className="GameField__gameMenu__item-text">ВРЕМЯ</div>
               <div className="GameField__gameMenu__item-time">
-                00:{timer > 10 ? timer : '0' + timer}
+                00:{timer > 9 ? timer : '0' + timer}
               </div>
             </div>
             <div className="GameField__gameMenu__wrapper">
